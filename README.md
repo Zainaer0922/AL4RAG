@@ -1,6 +1,6 @@
 # AL4RAG
 # For model fine-tuning, run
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --nnodes 1 --nproc_per_node 8 ~/AL4RAG/sft.py \
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --nnodes 1 --nproc_per_node 8 sft.py \
 --model_name_or_path your_model_path \
 --output_dir your_output_path \
 --do_train \
@@ -28,4 +28,23 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --nnodes 1 --nproc_per_node 8 ~/AL
 --eval_strategy steps \
 --eval_steps 8 \
 --fsdp "shard_grad_op auto_wrap" \
---fsdp_config ~/AL4RAG/fsdp.json
+--fsdp_config fsdp.json
+# For data selection, modify the file path and data proportion in AL4RAG.py, and run
+python AL4RAG.py
+# For DPO training, modify the eval set path in trainDPO.py and run
+python trainDPO.py \
+    --dataset_name path_to_your_training_set \
+    --model_name_or_path path_to_your_base_model \
+    --learning_rate 1.0e-5 \
+    --num_train_epochs 1 \
+    --per_device_train_batch_size 2 \
+    --gradient_accumulation_steps 8 \
+    --gradient_checkpointing \
+    --logging_steps 25 \
+    --output_dir your_output_dir \
+    --no_remove_unused_columns \
+    --use_peft \
+    --lora_r 32 \
+    --lora_alpha 16 \
+    --eval_strategy steps \
+    --eval_steps 50
