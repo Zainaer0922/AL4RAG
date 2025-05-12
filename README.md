@@ -48,3 +48,5 @@ python trainDPO.py \
     --lora_alpha 16 \
     --eval_strategy steps \
     --eval_steps 50
+# For answer generation, modify the model path and dataset path in generate_answers.py and run
+python generate_answers.py
