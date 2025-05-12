@@ -1,4 +1,5 @@
 # AL4RAG
+pip install -r requirements.txt
 # For model fine-tuning, run
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --nnodes 1 --nproc_per_node 8 sft.py \
 --model_name_or_path your_model_path \
