@@ -31,7 +31,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --nnodes 1 --nproc_per_node 8 sft.
 --fsdp_config fsdp.json
 # For data selection, modify the file path and data proportion in AL4RAG.py, and run
 python AL4RAG.py
-# For DPO training, modify the eval set path in trainDPO.py and run
+# For DPO training, modify the eval set path in trainDPO.py, and run
 python trainDPO.py \
     --dataset_name path_to_your_training_set \
     --model_name_or_path path_to_your_base_model \
@@ -48,5 +48,6 @@ python trainDPO.py \
     --lora_alpha 16 \
     --eval_strategy steps \
     --eval_steps 50
-# For answer generation, modify the model path and dataset path in generate_answers.py and run
+# For answer generation, modify the model path and dataset path in generate_answers.py, and run
 python generate_answers.py
+# For evaluation process, please follow our paper.
