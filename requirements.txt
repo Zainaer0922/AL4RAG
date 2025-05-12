@@ -2,3 +2,13 @@ transformers
 trl
 torch
 sentencepiece
+peft
+json
+accelerate
+datasets
+scikit-learn
+pandas
+numpy
+random
+dataclasses
+typing
